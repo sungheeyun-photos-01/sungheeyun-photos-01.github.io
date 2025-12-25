@@ -38,7 +38,7 @@ def main(directory: str, quality: int):
             logger.warning(f"`{trg_file_path}' already exists... do nothing;")
         else:
             src_file_path: str = os.path.join(directory, filename)
-            cmd: str = f"convert '{src_file_path}' -quality {quality} '{trg_file_path}'"
+            cmd: str = f"magick '{src_file_path}' -quality {quality} '{trg_file_path}'"
             logger.info(f"EXECUTING {cmd}")
             os.system(cmd)
 
