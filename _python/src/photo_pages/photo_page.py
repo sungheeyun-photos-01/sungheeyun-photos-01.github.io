@@ -36,8 +36,8 @@ class PhotoPage:
 
         lines.append("---")
         lines.append("layout: single")
-        lines.append(f"title: {os.path.join(*self.id_) if len(self.id_) > 0 else 'Photos'}")
-        lines.append(f"permalink: {self.permalink}")
+        lines.append(f"title: \"{os.path.join(*self.id_) if len(self.id_) > 0 else 'Photos'}\"")
+        lines.append(f'permalink: "{self.permalink}"')
         lines.append("toc: false")
         lines.append('toc_label: "&nbsp;Table of Contents"')
         lines.append('toc_icon: "fa-solid fa-list"')
@@ -62,6 +62,11 @@ class PhotoPage:
             assert os.path.isdir(photo_dir), photo_dir
 
             for filename in os.listdir(photo_dir):
+                if filename == ".DS_Store":
+                    continue
+                if os.path.splitext(filename)[1].lower() == ".heic":
+                    continue
+
                 lines.append("")
                 lines.append('<div class="img-container">')
                 lines.append(
